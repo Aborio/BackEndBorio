@@ -9,17 +9,17 @@ const mostrarInfo = () => {
 
 const mostrarRandom = () =>{
     let info = mostrarInfo()
-    let obj = [info[0].id,info[1].id,info[2].id,info[3].id,info[4].id,info[5].id,info[6].id]
+    let obj = info
     return Math.floor(Math.random()*obj.length)
-
-    
 }
 
 app.get('/productos', (req,res)=>{
     res.send(mostrarInfo())
 })
-
-
+app.get('/productosRandom', (req,res)=>{
+    
+    res.send({dato : mostrarRandom()})
+})
 
 const PORT = 8080
 
@@ -28,6 +28,3 @@ const server = app.listen(PORT,()=>{
 })
 
 server.on("error", error =>console.log(`Error`))
-
-
-console.log(mostrarRandom())
