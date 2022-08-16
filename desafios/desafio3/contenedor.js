@@ -53,7 +53,18 @@ class Contenedor{
             return `no es posible`
         }
     }
+    
+    
+    async mostrarRandom(){
+        try{
+            let info = await this.getAll()
+            let objJson = JSON.parse(info)
+            let numRandom = Math.floor(Math.random()*objJson.length)
+            return objJson[numRandom]
+        }  catch (error){
 
+        } 
+    }
     async deleteAll(){
         try {
             await fs.writeFileSync(this.ruta, JSON.stringify([],null,2))
@@ -68,19 +79,5 @@ as.save({title:"Mayonesa",
 price:"200$",
 foto: "foto1"})
 
-as.getAll()
-.then((data)=>console.log(data))
-.catch((err=>console.log(err)))
 
-as.deleteById(1)
-.then((data)=>console.log(data))
-.catch((err=>console.log(err)))
-
-as.deleteAll()
-.then((data)=>console.log(data))
-.catch((err=>console.log(err)))
-
-as.getById(2)
-.then((data)=>console.log(data))
-.catch((err=>console.log(err)))
-
+module.exports=Contenedor

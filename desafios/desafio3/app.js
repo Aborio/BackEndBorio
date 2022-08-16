@@ -1,24 +1,21 @@
 const express = require('express')
 const app = express();
-const fs = require('fs')
-
-const mostrarInfo = () => {
-    let info = fs.readFileSync('productos.txt','utf-8')
-    return JSON.parse(info)
-}
-
-const mostrarRandom = () =>{
-    let info = mostrarInfo()
-    let obj = info
-    return Math.floor(Math.random()*obj.length)
-}
+const fs = require('fs');
+const Contenedor = require('./contenedor');
+const productos = new Contenedor('./productos.txt')
 
 app.get('/productos', (req,res)=>{
-    res.send(mostrarInfo())
+    productos.getAll()
+    .then((data)=>{
+        res.send(data);
+    })
+    
 })
 app.get('/productosRandom', (req,res)=>{
-    
-    res.send({dato : mostrarRandom()})
+    productos.mostrarRandom()
+    .then((data)=>{
+        res.send(data);
+    })
 })
 
 const PORT = 8080
