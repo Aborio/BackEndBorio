@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Productos</h1>
+    <p>Welcome</p>
+    <% productos.forEach(p => { %>
+     <p><%= p.titles %> </p>
+     <p><%= p.price %> </p>
+     <img src="<%= p.url %>" width="100px"></img>
+    <% }) %>
+
+    <a href="agregarProductos">Agregar producto</a>
+  </body>
+</html>
