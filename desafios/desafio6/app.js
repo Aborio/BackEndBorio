@@ -1,7 +1,8 @@
 const express = require('express');
 const handlebars = require('express-handlebars').engine;
 const app = express();
-const router = require('./src/routes/routeProducts.js');
+const routerProduct = require('./src/routes/routeProducts.js');
+const routerCarrito = require('./src/routes/routesCarrito.js');
 const handlebarsConig = {
   defaultLayout: 'index.handlebars',
 };
@@ -11,5 +12,6 @@ app.set('views', './views');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
-app.use('/', router);
+app.use('/', routerProduct);
+app.use('/carrito', routerCarrito);
 module.exports = app

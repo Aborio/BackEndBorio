@@ -1,7 +1,6 @@
 
 const socket = io.connect();
 const render=(data)=>{
-    console.log(data);
     const html = data.messages.map((elem,index)=>{
         return(
             `<div>
@@ -25,7 +24,6 @@ const render=(data)=>{
     document.getElementById("tbdy").innerHTML=ps
 }
 const addMessage=(e)=>{
-    e.preventDefault();
     let fecha = new Date().toLocaleDateString()+ ' ' +new Date().toTimeString()
     let fyh = fecha.split(' ');
     const mensaje = {

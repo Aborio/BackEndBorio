@@ -1,9 +1,9 @@
 const app = require('./app.js')
 const PORT =  process.env.PORT || 8080;
-const {Server:HttpServer} = require('http')
-const {Server:IOServer} = require('socket.io')
-const httpServer = new HttpServer(app)
-const io = new IOServer(httpServer)
+// const {Server:HttpServer} = require('http')
+// const {Server:IOServer} = require('socket.io')
+// const httpServer = new HttpServer(app)
+// const io = new IOServer(httpServer)
 const products = require('./src/contenedor')
 let messages = [
   {date:"25/8/2022 23:32:03 ",
@@ -13,9 +13,11 @@ let messages = [
   {date:"25/8/2022 23:32:03 ",
   author:"Ana",text:"Geinal!"}
 ]
-const server = httpServer.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log(`Servidor http escuchando en el puerto ${server.address().port}`);
   });
+
+const io = require('socket.io')(server)
 
 server.on('error', (error) => console.error(`Error en Servidor ${error}`));
 
@@ -31,14 +33,11 @@ io.on('connection',(socket)=>{
       messages.push(data);
       // messages=[...messages,data]
       // console.log(products.getAll());
-      console.log(messages);
       // let todo ={messages:messages,products:products.getAll()}
       io.sockets.emit('messages',messages)
   })
   socket.on('new-product',(data)=>{
-    console.log(data);
     products.save(data);
-    console.log(products.getAll());
       let todo ={messages:messages,products:products.getAll()}
     io.sockets.emit('messages',todo)
   })
