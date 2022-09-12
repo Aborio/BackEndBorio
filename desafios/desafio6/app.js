@@ -12,6 +12,6 @@ app.set('views', './views');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
-app.use('/', routerProduct);
-app.use('/carrito', routerCarrito);
+app.use('/api/productos', routerProduct);
+app.use('/api/carrito', routerCarrito);
 module.exports = app
