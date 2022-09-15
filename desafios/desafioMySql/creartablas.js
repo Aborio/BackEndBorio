@@ -25,7 +25,7 @@ clienteSql.schema.hasTable('productos')
         clienteSql.schema.createTable('mensajes', tabla =>{
             tabla.increments('id'),
             tabla.string('nombre'),
-            table.string('mensajes')
+            tabla.string('mensajes')
         })
         .then(()=>{
             console.log("tabla creada")

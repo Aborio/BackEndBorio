@@ -24,7 +24,7 @@ app.get('/api/productos', async (req,res) =>{
 //aca comienza mensajes
 
 app.post('api/mensajes',async (req,res) =>{
-    const mensajes = await clienteSqlsq.insert({nombre: req.body, edad: req.body}).into('mensajes')
+    const mensajes = await clienteSqlsq.insert({nombre: req.body, mensaje: req.body}).into('mensajes')
     res.json(mensajes)
 } )
 
