@@ -1,7 +1,7 @@
 
 const { Router } = require('express');
 const router = Router();
-const soloAdmins = require('middlewares.js')
+const { soloAdmins } = require('../middlewares')
 
 const products = require('../contenedor')
 
@@ -19,11 +19,13 @@ router.post('/productos',soloAdmins, (req, res) => {
 });
 
 router.put('/:id',soloAdmins, (req,res)=>{
+  id = req.body.id
   products.updateProduct(id,obj)
   res.send({msg: "realizado con exito"})
 })
 
 router.delete('/:id',soloAdmins, (req,res)=>{
+  id = req.body.id
   products.deleteById(id)
   res.send({msg : "producto eliminado"})
 })
