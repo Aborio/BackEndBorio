@@ -1,0 +1,409 @@
+coderhouse> db.productos.find()
+[
+  {
+    _id: ObjectId("6323c09f040ed7edee71105b"),
+    nombre: 'Canastas',
+    precio: 1250
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee71105c"),
+    nombre: 'Vaso de cerveza',
+    precio: 1200
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee71105d"),
+    nombre: 'Tuppers',
+    precio: 200
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee71105e"),
+    nombre: 'Vaso cerveza',
+    precio: 5000
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee71105f"),
+    nombre: 'Cerveza',
+    precio: 2523
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee711060"),
+    nombre: 'Mates',
+    precio: 522
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee711061"),
+    nombre: 'Porta Mates',
+    precio: 569
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee711062"),
+    nombre: 'Yerba',
+    precio: 325
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee711063"),
+    nombre: 'Bombilla',
+    precio: 1255
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee711064"),
+    nombre: 'Matera',
+    precio: 2333
+  },
+  {
+    _id: ObjectId("6323c8f4040ed7edee711065"),
+    nombre: 'Plancha',
+    precio: 2366
+  }
+]
+coderhouse> db.mensajes.find()
+[
+  {
+    _id: ObjectId("6323bebb040ed7edee711051"),
+    mensaje: 'Hola como estas?'
+  },
+  {
+    _id: ObjectId("6323bebb040ed7edee711052"),
+    mensaje: 'Muy bien, y vos?'
+  },
+  {
+    _id: ObjectId("6323bebb040ed7edee711053"),
+    mensaje: 'Hace frio hoy'
+  },
+  {
+    _id: ObjectId("6323bebb040ed7edee711054"),
+    mensaje: 'Si hace frio'
+  },
+  {
+    _id: ObjectId("6323bebb040ed7edee711055"),
+    mensaje: 'Vas a viajar?'
+  },
+  {
+    _id: ObjectId("6323bebb040ed7edee711056"),
+    mensaje: 'No creo, y vos?'
+  },
+  {
+    _id: ObjectId("6323bebb040ed7edee711057"),
+    mensaje: 'Si, creo que viajo'
+  },
+  {
+    _id: ObjectId("6323bebb040ed7edee711058"),
+    mensaje: 'Tenemos que juntanos'
+  },
+  { _id: ObjectId("6323bebb040ed7edee711059"), mensaje: 'si, claro!' },
+  {
+    _id: ObjectId("6323bebb040ed7edee71105a"),
+    mensaje: 'Deberiamos juntarnos obvio que si!'
+  }
+]
+coderhouse> db.productos.estimatedDocuemntCount()
+
+
+-----------------------------------------------------NUMERO 4---------------------------------------
+coderhouse> db.productos.estimatedDocumentCount()
+11
+coderhouse> db.mensajes.estimatedDocumentCount()
+10
+
+-------------------------------------------------------NUMERO 5 A PARTIR DE ACA----------------------------
+coderhouse> db.productos.insertOne({nombre:"canasta", precio:2200})
+{
+  acknowledged: true,
+  insertedId: ObjectId("6324a8d8ce147525273a715e")
+}
+coderhouse> db.productos.find({precio:{$lte: 1000}})
+[
+  {
+    _id: ObjectId("6323c09f040ed7edee71105d"),
+    nombre: 'Tuppers',
+    precio: 200
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee711060"),
+    nombre: 'Mates',
+    precio: 522
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee711061"),
+    nombre: 'Porta Mates',
+    precio: 569
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee711062"),
+    nombre: 'Yerba',
+    precio: 325
+  }
+]
+coderhouse> db.productos.find({precio:{$gte:1000 , $lte:3000}})
+[
+  {
+    _id: ObjectId("6323c09f040ed7edee71105b"),
+    nombre: 'Canastas',
+    precio: 1250
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee71105c"),
+    nombre: 'Vaso de cerveza',
+    precio: 1200
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee71105f"),
+    nombre: 'Cerveza',
+    precio: 2523
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee711063"),
+    nombre: 'Bombilla',
+    precio: 1255
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee711064"),
+    nombre: 'Matera',
+    precio: 2333
+  },
+  {
+    _id: ObjectId("6323c8f4040ed7edee711065"),
+    nombre: 'Plancha',
+    precio: 2366
+  },
+  {
+    _id: ObjectId("6324a8d8ce147525273a715e"),
+    nombre: 'canasta',
+    precio: 2200
+  }
+]
+coderhouse> db.productos.find({precio:{$gte:3000}})
+[
+  {
+    _id: ObjectId("6323c09f040ed7edee71105e"),
+    nombre: 'Vaso cerveza',
+    precio: 5000
+  }
+]
+
+coderhouse> db.productos.updateMany({},{$set:{stock : 100}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 12,
+  modifiedCount: 12,
+  upsertedCount: 0
+}
+coderhouse> db.productos.find()
+[
+  {
+    _id: ObjectId("6323c09f040ed7edee71105b"),
+    nombre: 'Canastas',
+    precio: 1250,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee71105c"),
+    nombre: 'Vaso de cerveza',
+    precio: 1200,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee71105d"),
+    nombre: 'Tuppers',
+    precio: 200,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee71105e"),
+    nombre: 'Vaso cerveza',
+    precio: 5000,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee71105f"),
+    nombre: 'Cerveza',
+    precio: 2523,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee711060"),
+    nombre: 'Mates',
+    precio: 522,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee711061"),
+    nombre: 'Porta Mates',
+    precio: 569,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee711062"),
+    nombre: 'Yerba',
+    precio: 325,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee711063"),
+    nombre: 'Bombilla',
+    precio: 1255,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee711064"),
+    nombre: 'Matera',
+    precio: 2333,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6323c8f4040ed7edee711065"),
+    nombre: 'Plancha',
+    precio: 2366,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6324a8d8ce147525273a715e"),
+    nombre: 'canasta',
+    precio: 2200,
+    stock: 100
+  }
+]
+
+coderhouse> db.productos.updateMany({precio:{$gte:4000}}, {$set: {stock : 0}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+coderhouse> db.productos.find()
+[
+  {
+    _id: ObjectId("6323c09f040ed7edee71105b"),
+    nombre: 'Canastas',
+    precio: 1250,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee71105c"),
+    nombre: 'Vaso de cerveza',
+    precio: 1200,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee71105d"),
+    nombre: 'Tuppers',
+    precio: 200,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee71105e"),
+    nombre: 'Vaso cerveza',
+    precio: 5000,
+    stock: 0
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee71105f"),
+    nombre: 'Cerveza',
+    precio: 2523,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee711060"),
+    nombre: 'Mates',
+    precio: 522,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee711061"),
+    nombre: 'Porta Mates',
+    precio: 569,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee711062"),
+    nombre: 'Yerba',
+    precio: 325,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee711063"),
+    nombre: 'Bombilla',
+    precio: 1255,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee711064"),
+    nombre: 'Matera',
+    precio: 2333,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6323c8f4040ed7edee711065"),
+    nombre: 'Plancha',
+    precio: 2366,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6324a8d8ce147525273a715e"),
+    nombre: 'canasta',
+    precio: 2200,
+    stock: 100
+  }
+]
+
+coderhouse> db.productos.deleteMany({precio: {$lte : 1000}})
+{ acknowledged: true, deletedCount: 4 }
+coderhouse> db.productos.find()
+[
+  {
+    _id: ObjectId("6323c09f040ed7edee71105b"),
+    nombre: 'Canastas',
+    precio: 1250,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee71105c"),
+    nombre: 'Vaso de cerveza',
+    precio: 1200,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee71105e"),
+    nombre: 'Vaso cerveza',
+    precio: 5000,
+    stock: 0
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee71105f"),
+    nombre: 'Cerveza',
+    precio: 2523,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee711063"),
+    nombre: 'Bombilla',
+    precio: 1255,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6323c09f040ed7edee711064"),
+    nombre: 'Matera',
+    precio: 2333,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6323c8f4040ed7edee711065"),
+    nombre: 'Plancha',
+    precio: 2366,
+    stock: 100
+  },
+  {
+    _id: ObjectId("6324a8d8ce147525273a715e"),
+    nombre: 'canasta',
+    precio: 2200,
+    stock: 100
+  }
+]
+
+------------------------------------------------NUMERO 6-----------------------------------------------
+
+admin> db.createUser({user: "pepe", pwd: "asd456", roles:[{role : "read", db:"coderhouse"}]})
+{ ok: 1 }to db admin
