@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chat</title>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    
+    <form onsubmit="return addMessage(this)">
+        <input type="text" id="nombre" placeholder="Acá tu nombre">
+        <input type="email" id="email" placeholder="Acá tu email">
+        <input type="text" id="apellido" placeholder="Acá tu apellido">
+        <input type="number" id="edad" placeholder="Acá tu edad">
+        <input type="text" id="alias" placeholder="Acá tu alias">
+        <input type="url" id="avatar" placeholder="Acá tu logo/avatar">
+        <div id="messages"></div>
+        <input type="text" id="texto" placeholder="Cuéntanos algo...">
+        <input class="btn btn-dark" type="submit" value="Enviar">
+    </form>
+
+
+
+    <script src="/socket.io/socket.io.js"></script>
+</body>
+</html>

@@ -1,6 +1,29 @@
 import express from 'express'
 import { clienteSql, clienteSqlsq } from './clientesql.js'
+import {faker } from '@faker-js/faker'
+faker.local = "es"
 
+let id = 1
+const nextId = () =>{
+    return id++
+}
+
+const generarAzar = () =>{
+    return {
+        id,
+        nombre: faker.name.firstName(),
+        precio:faker.finance.amount(),
+        imagen:faker.image.business()
+    }
+}
+
+const agregarAzar = () =>{
+    const productos = []
+    for (let i = 0; i < 5; i++){
+        productos.push(generarAzar(nextId))
+    }
+    return productos
+}
 const app = express()
 app.use(express.json())
 //Estos puede ser separados en una carpeta route y generar los productos ahi
@@ -19,7 +42,15 @@ app.get('/api/productos', async (req,res) =>{
     res.json(personas)
 })
 
+//----- agregado nuevo desafio-----//
+
+app.get('/api/productos-test', async (req,res)=>{
+    res.json(generarAzar())
+})
+
+
 // hasta aca productos
+
 
 //aca comienza mensajes
 

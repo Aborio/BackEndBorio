@@ -1,19 +1,22 @@
 {
-  "name": "clase11",
+  "type": "module",
+  "name": "desafiofaker",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@faker-js/faker": "^7.5.0",
     "express": "^4.18.1",
     "express-handlebars": "^6.0.6",
-    "exrpess": "^0.0.1-security",
-    "socket.io": "^4.5.1"
+    "handlebars": "^4.7.7",
+    "normalizr": "^3.6.2",
+    "socket.io": "^4.5.2"
   }
 }
