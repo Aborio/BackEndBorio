@@ -9,18 +9,6 @@ const render=(data)=>{
             </div>`)
     }).join(" ")
     document.getElementById("messages").innerHTML=html;
-    const ps = data.products.map((p)=>{
-        return(`<tr>
-            <th>${p.title}</th>
-            <td>${p.price}</td>
-            <td>
-              <div>
-                <img class="w-50" src=${p.thumbnail} alt='Product image' />
-              </div>
-            </td>
-          </tr>`)
-    }).join(" ")
-    document.getElementById("tbdy").innerHTML=ps
 }
 
 const addMessage=(e)=>{
@@ -28,7 +16,7 @@ const addMessage=(e)=>{
     let fyh = fecha.split(' ');
     const mensaje = {
         author:{
-            email:document.getElementById('email').value,
+            id:document.getElementById('email').value,
             nombre:document.getElementById('nombre').value,
             apellido:document.getElementById('apellido').value,
             edad:document.getElementById('edad').value,

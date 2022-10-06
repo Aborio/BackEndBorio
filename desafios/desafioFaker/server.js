@@ -5,6 +5,8 @@ import { engine } from 'express-handlebars'
 import {Server} from "socket.io"
 const handlebars = engine()
 const app = express()
+let messages = []
+console.log(messages)
 const handlebarsConfig = {
     defaultLayout : 'main.handlebars',
 }
