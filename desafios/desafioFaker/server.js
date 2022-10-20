@@ -1,6 +1,7 @@
 import express, {json} from 'express'
 import {faker } from '@faker-js/faker'
 import productosRouter from './router/productos.js'
+import {createServer} from "http"
 import { engine } from 'express-handlebars'
 import {Server} from "socket.io"
 const handlebars = engine()
@@ -23,7 +24,8 @@ app.get('/index',(req,res)=>{
 const server = app.listen(8080, ()=>{
     console.log("cuchando puerto 8080")
 })
-const io = new Server(server);
+const httpServer = createServer(app)
+const io = new Server(httpServer);
 server.on('error', (error) => console.error(`Error en Servidor ${error}`))
 
 server.on('error',(err)=>{
