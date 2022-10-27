@@ -22,7 +22,7 @@ dotenv.config()
 /* ------------------------------------------------*/
 /*           Persistencia por MongoDB              */
 import MongoStore from 'connect-mongo'
-const mongoUrl = 'mongodb+srv://aguborio18:321654@cluster0.u12lxve.mongodb.net/?retryWrites=true&w=majority'
+const mongoUrl = process.env.SERVER
 const store = MongoStore.create({ mongoUrl, ttl: 300 })
 app.use(session({
    store,
