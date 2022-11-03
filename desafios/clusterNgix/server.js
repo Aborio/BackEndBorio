@@ -7,7 +7,6 @@ const numCPUs = os.cpus().length
 
 
 if (cluster.isPrimary) {
-    console.log(numCPUs)
     console.log(`PID MASTER ${process.pid}`)
 
     for (let i = 0; i < numCPUs; i++) {
@@ -26,7 +25,7 @@ else {
 
     const PORT = parseInt(process.argv[2]) || 8080
 
-    app.get('/info', (req, res) => {
+    app.get('/api/randoms', (req, res) => {
         res.send(`PUERTO: ${PORT} - <b>PID ${process.pid}</b> - ${new Date().toLocaleString()}`)
     })
 
