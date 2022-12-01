@@ -1,7 +1,8 @@
 import express from 'express'
 import MongoStore from 'connect-mongo'
 import logger from './logger.js'
-import Usuario from './controller.js'
+import Usuario from './DaoProducto.js'
+
 
 
 /* ------------------------------------------------*/
