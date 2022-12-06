@@ -1,5 +1,8 @@
 import { Schema } from "mongoose";
 import { v4 as uuidv4 } from 'uuid';
+import ContenedorMongoDb from "../contenedorMongo.js";
+
+const cont = ContenedorMongoDb
 
 const productoSchema = new Schema({
     id : {type: String, required: true},
@@ -14,9 +17,9 @@ export default class ProductosDAO{
     }
 
     async actualizarProducto (id , nuevoDato){
-        const product = await this.findById(id)
+        const product = await cont.findById(id)
         const actProducto = {...product,...nuevoDato}
-        await this.updateById(id,actProducto)
+        await cont.updateById(id,actProducto)
         return actProducto
 
     }

@@ -4,31 +4,54 @@ import mongoose, { model } from 'mongoose'
 class ContenedorMongoDb {
     
 
-    constructor(nombreColeccion,esquema) {
-        this.elementos = mongoose.model(nombreColeccion,mongoose.Schema(esquema))
+    constructor() {
+        
+        this.data = []
     }
 
-    async buscarSchemaID(nombreColeccion, id) {
-        const nombreColeccion = this.elementos
-        const dato = nombreColeccion.find().select({_id:id,__v:0})
-        return dato
+    async getAll () {
+        return this.data
     }
 
-    async buscarTodas(){
-        return this.elementos.find().lean()
+    async findById(id){
+        const itemIndex = this.data.findIndex(d => d.id === id)
+        return this.data[itemIndex]
     }
 
-    async crearSchema(Coleccion) {
-        const dato = this.elementos
-        const dato1 = new dato(Coleccion)
-        dato1.save()
-        return dato1
-    }
+    async addOne(item){
+        this.data.push({
+          ...item,
+          id: this.count() + 1,
+          timestamp: +new Date()
+        })
+        return item
+      }
 
 
-    async borrarAll() {
-        return this.elementos.deleteMany({})
-    }
+    async updateById(id,data){
+        let updatedItemIndex = this.data.findIndex(d => d.id === id)
+        this.data[updatedItemIndex] = { ...this.data[updatedItemIndex], ...data }
+        return this.data[updatedItemIndex]
+      }
+
+    async deleteOne(id){
+        let deletedItem
+        this.data = this.data.filter((d) => {
+          if (d.id !== id) {
+            deletedItem = d
+            return true
+          }
+        })
+        return deletedItem
+      }
+
+    async deleteAll(){
+        return (this.data = [])
+      }
+
+    async count(){
+        return this.data.length
+      }
 }
 
 export default ContenedorMongoDb

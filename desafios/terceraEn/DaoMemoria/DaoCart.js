@@ -1,4 +1,7 @@
 import mongoose, { Schema } from "mongoose";
+import ContenedorMongoDb from "../contenedorMongo.js";
+
+const cont1 = ContenedorMongoDb
 
  export const cartSchema = new Schema({
     id: {type: String, required: true},
@@ -13,7 +16,7 @@ export default class CartDAO{
 
     async encontrarProducto(id, product_id){
         try {
-            const cart = await this.findById(id)
+            const cart = await cont1.findById(id)
             if(!cart){
                 throw ("error no hay id")
             }
@@ -34,7 +37,7 @@ export default class CartDAO{
         return cart
     }
 
-    async findByUserId (userId){
+    async findById (userId){
         try {
             const usuExis = Boolean(userDAO.findById(userId))
             if(!usuExis) throw ("usuario no existe")
@@ -42,6 +45,12 @@ export default class CartDAO{
             return undefined
         }
     }
+    async vaciarCarro(){
+        const updateCart = cont1.findById(user_id)
+        updateCart.productos = []
 
+        cont1.updateById(updateCart.id, updateCart)
+        return updateCart
+    }
 
 }
