@@ -1,4 +1,4 @@
-import * as personas from './personasService.js'
+import * as personas from './person.js'
 
 export function getPersonas({ campo, valor }) {
     return personas.getPersonas(campo, valor)

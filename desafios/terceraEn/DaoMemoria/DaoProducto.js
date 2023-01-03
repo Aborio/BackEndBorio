@@ -19,7 +19,7 @@ export default class ProductosDAO{
     async actualizarProducto (id , nuevoDato){
         const product = await cont.findById(id)
         const actProducto = {...product,...nuevoDato}
-        await cont.updateById(id,actProducto)
+        await cont .updateById(id,actProducto)
         return actProducto
 
     }

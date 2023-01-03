@@ -7,7 +7,7 @@ import {
   createPersona,
   updatePersona,
   deletePersona,
-} from './personasController.js'
+} from './controlador.js'
 
 const schema = buildSchema(`
   input DireccionInput {
